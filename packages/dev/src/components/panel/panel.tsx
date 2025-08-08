@@ -14,21 +14,12 @@ export function Panel() {
           target="_blank"
           rel="noopener nofollow"
         >
-          perfect-freehand
+          pen-test
         </a>
       </div>
       <div className={[styles.container, styles.top, styles.left].join(' ')}>
         <a onClick={app.togglePanelOpen}>
           <HamburgerMenuIcon height={24} width={24} color="black" />
-        </a>
-      </div>
-      <div className={[styles.container, styles.top, styles.right].join(' ')}>
-        <a
-          href="https://github.com/steveruizok/perfect-freehand"
-          target="_blank"
-          rel="noopener nofollow"
-        >
-          <GitHubLogoIcon height={24} width={24} />
         </a>
       </div>
       <div className={[styles.container, styles.bottom, styles.left].join(' ')}>

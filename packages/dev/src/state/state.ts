@@ -11,6 +11,7 @@ import { Vec } from '@tldraw/vec'
 import { StateManager } from 'rko'
 import { draw, DrawUtil } from './shapes'
 import sample from './sample.json'
+import sample2 from './sample2.json'
 import type { StateSelector } from 'zustand'
 import { copyTextToClipboard, pointInPolygon } from './utils'
 import { EASING_STRINGS } from './easings'
@@ -81,8 +82,9 @@ export class AppState extends StateManager<State> {
     window['app'] = this
 
     if (Object.values(this.state.page.shapes).length === 0) {
-      this.addShape({ id: 'sample', points: sample })
-      this.centerShape('sample')
+      this.addShape({ id: 'sample1', points: sample }, [20, -200])
+      this.addShape({ id: 'sample2', points: sample2 })
+      this.centerShape('sample2')
     }
   }
 
@@ -431,12 +433,12 @@ export class AppState extends StateManager<State> {
       })
   }
 
-  addShape = (shape: Partial<DrawShape>) => {
+  addShape = (shape: Partial<DrawShape>, point?: [number, number]) => {
     const newShape = draw.create({
       id: Utils.uniqueId(),
       parentId: 'page',
       childIndex: 1,
-      point: [0, 0],
+      point: point ?? [0, 0],
       points: [],
       style: this.state.appState.style,
       ...shape,
@@ -750,6 +752,10 @@ export class AppState extends StateManager<State> {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
 
     const shapes = Object.values(this.state.page.shapes)
+
+    for (const shape of shapes) {
+      console.log(shape.points)
+    }
 
     const bounds = Utils.getCommonBounds(shapes.map(draw.getBounds))
 
