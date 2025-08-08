@@ -17,6 +17,7 @@ import { copyTextToClipboard, pointInPolygon } from './utils'
 import { EASING_STRINGS } from './easings'
 
 export const shapeUtils: TLShapeUtilsMap<DrawShape> = {
+  // @ts-ignore
   draw: new DrawUtil(),
 }
 

@@ -61,6 +61,7 @@ export class DrawUtil extends TLShapeUtil<T, E> {
     )
   }
 
+  // @ts-ignore
   Component = TLShapeUtil.Component<T, E>(({ shape, events }, ref) => {
     const {
       style: {
@@ -110,7 +111,7 @@ export class DrawUtil extends TLShapeUtil<T, E> {
     const drawPathData = getSvgPathFromStroke(outlinePoints)
 
     return (
-      <SVGContainer ref={ref} fr="" {...events}>
+      <SVGContainer onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} ref={ref} fr="" {...events}>
         {strokeWidth ? (
           <path
             d={drawPathData}
@@ -206,13 +207,13 @@ export class DrawUtil extends TLShapeUtil<T, E> {
     const points = initialShape.points.map(([x, y, r]) => {
       return [
         bounds.width *
-          (scaleX < 0 // * sin?
-            ? 1 - x / initialShapeBounds.width
-            : x / initialShapeBounds.width),
+        (scaleX < 0 // * sin?
+          ? 1 - x / initialShapeBounds.width
+          : x / initialShapeBounds.width),
         bounds.height *
-          (scaleY < 0 // * cos?
-            ? 1 - y / initialShapeBounds.height
-            : y / initialShapeBounds.height),
+        (scaleY < 0 // * cos?
+          ? 1 - y / initialShapeBounds.height
+          : y / initialShapeBounds.height),
         r,
       ]
     })
